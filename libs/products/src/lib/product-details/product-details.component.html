@@ -1,0 +1,68 @@
+<p-toast></p-toast>
+<div class="p-grid">
+    <div class="p-col-1 p-mt-5 p-xs-* p-sm-* images-gallery">
+        <ul>
+            <li class="p-mt-3"
+              *ngFor="let image of productimages"
+              (click)="changeImage(image)"
+              [ngStyle]="{ 'background-image': 'url(' + image + ')' }"
+            ><img src="{{ image }}" width="50" height="50" /></li>
+          </ul>
+    </div>
+
+    <div class="p-col-5 p-sm-*">
+        <div class="gallery p-ml-2 p-mr-2">
+            <div class="image-container">
+                <div class="images">
+                    <img [src]="selectedImageUrl"  width="100%" height="100%"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="p-col-6">
+        <div class="gallery">
+            <h1>{{ product.name }}</h1>
+            Brand: <span>{{ product.brand }}</span><br>
+            <p-rating class="p-mt-2" [(ngModel)]="product.rating" [cancel]="false"></p-rating>
+            <p-divider></p-divider>
+            Price: ₹  {{ product.price  }}  <span class="price"> MRP:  ₹  {{ priceMRP + 22  }}</span><br>
+            <span class="p-pl-2 p-pr-2 " style="color:white;background-color: orange;font-size: 12px;">FREE DELIVERY </span><br><br>
+
+            <div class="p-field p-col-3 p-md-3">
+                <label for="quantity">Quantity</label>
+                <p-inputNumber [size]="10" currency="INR" [(ngModel)]="quantity" mode="decimal" [showButtons]="true" inputId="quantity" [min]="1" [max]="100">
+                </p-inputNumber>
+                
+            </div>
+            <p-button label="Add to Cart" (click)="addtocart()" icon="pi pi-shopping-cart" styleClass="p-button-warning"></p-button> 
+            <p-button class="p-ml-2" label="Buy Now" (click)="buy()" icon="pi pi-caret-right" styleClass="p-button-warning"></p-button> 
+            <h5 class="p-mt-3">EMI starts at ₹424. No Cost EMI available</h5>
+            <div class="p-col-7 cardsdetail p-mt-3 p-shadow-1">
+                <h5><span style="color:red">Save </span>Extra with 5 offers</h5>
+                <p-divider></p-divider>
+                <h5 class="p-mt-2"> <span style="color:red">No Cost EMI: </span>Avail No Cost EMI on select cards for orders above ₹3000</h5>
+                <p-divider></p-divider>
+                <h5 class="p-mt-2"> <span style="color:red">Exchange Offer:  </span>Up to ₹ 8,500.00 off on Exchange</h5>
+            </div>
+            <diV class="instock p-mt-3">
+             <p-tag styleClass="p-mr-2" severity="success" [rounded]=true value="InStock: {{ product.productStock }} "></p-tag>
+            
+            </diV>
+            <p-divider></p-divider>
+            <h3>About this item</h3>
+            - {{ product.description }}
+    
+        </div>
+    </div>
+    <div class="p-grid">
+        <div class="p-col-12">
+            <h4>Description</h4>
+            <div [innerHTML]="product.descriptionDetails">
+
+            </div>
+        
+        </div>
+    </div>
+</div>

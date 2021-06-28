@@ -1,0 +1,94 @@
+<p-toast></p-toast>
+<h1>Select a delivery Address</h1>
+<h5>Is the address you'd like to use displayed below? If so, click the corresponding "Deliver to this address" button.</h5><br>
+<p-divider></p-divider>
+
+<div class="p-grid"  *ngIf="isAuth">
+    <div class="p-col-3">
+        <div class="address">
+
+            <h4 class="p-text-bold">Aditya Singh</h4>
+            <span>B-509,Apex apt, Navghar Road
+                behind naya nagar complex
+                Bhayander E, MAHARASHTRA 401105
+                India</span>
+        </div>
+        <button
+        pButton
+        pRipple
+        type="button"
+        label="Deliver to address"
+        class="p-mt-3 p-button-warning"
+      ></button>
+    </div>
+</div>
+
+<div class="p-grid">
+    <!-- <div pRipple class="purple"> -->
+        <div class="p-col-12 p-md-* p-sm-* p-md-*">
+            <div class="card">
+                <form [formGroup]="form">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col-12 p-md-6">
+                            <label for="name">Name</label>
+                            <input formControlName="name" id="name" type="text" pInputText> 
+                            
+                        <small *ngIf="userform.name.invalid && isFormSubmited" class="p-error"
+                        >name is required</small>
+                        </div>
+                        <div class="p-field p-col-12 p-md-3">
+                            <label for="email">Email</label>
+                            <input formControlName="email" id="email" type="text" pInputText> 
+                            <small *ngIf="userform.email.invalid && isFormSubmited" class="p-error"
+                            ><span *ngIf="userform.email.errors?.email">Email is invalid</span><span *ngIf="userform.email.errors?.required">Email is required</span></small>
+                        </div>
+                        <div class="p-field p-col-12 p-md-3">
+                            <label for="number">Phone Number</label>
+                            <input formControlName="phone" id="number" type="text" pInputText> 
+                            <small *ngIf="userform.phone.invalid && isFormSubmited" class="p-error"
+                            >Phone is required</small>
+                        </div>
+           
+                        <div class="p-field p-col-12 p-md-6">
+                            <label for="street">Street</label>
+                            <input formControlName="street" id="street" type="text" pInputText> 
+                            <small *ngIf="userform.street.invalid && isFormSubmited" class="p-error"
+                            >Street is required</small>
+                        </div>
+                        <div class="p-field p-col-12 p-md-6">
+                            <label for="address">Address</label><br>
+                            <textarea formControlName="apartment" id="address" type="text" rows="4" style="width: 100%" pInputTextarea></textarea>
+                            <small *ngIf="userform.apartment.invalid && isFormSubmited" class="p-error"
+                            >Address is required</small>
+                        </div>
+        
+                        <div class="p-field p-col-12 p-md-6">
+                            <label for="city">City</label>
+                            <input formControlName="city" id="city" type="text" pInputText> 
+                            <small *ngIf="userform.city.invalid && isFormSubmited" class="p-error"
+                            >City is required</small>
+                        </div>
+                        <div class="p-field p-col-12 p-md-3">
+                            <label for="state">Country</label>
+                            <p-dropdown formControlName="country" inputId="state" placeholder="Select" [options]="countries" [showClear]="true" [filter]="true" [filterBy]="'name'" optionLabel="name" optionValue="name"></p-dropdown>
+                            <small *ngIf="userform.country.invalid && isFormSubmited" class="p-error"
+                            >Country is required</small>
+                        </div>
+                        <div class="p-field p-col-12 p-md-3">
+                            <label for="zip">Zipcode</label>
+                            <input formControlName="zipcode" id="zip" type="text" pInputText> 
+                            <small *ngIf="userform.zipcode.invalid && isFormSubmited" class="p-error"
+                            >Zipcode is required</small>
+                        </div>
+                        <div class="p-field p-col-12 p-md-2">
+                        <button pButton type="button" label="Deliver now" icon="pi pi-plus" (click)="onSubmit()" class="p-button-rounded p-button-outlined"></button>
+        
+                    </div>
+               
+                    </div>
+                </form>
+            </div>
+    
+        </div>
+    <!-- </div> -->
+</div>

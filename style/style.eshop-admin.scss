@@ -1,0 +1,20 @@
+@import '~normalize.css/normalize.css';
+//base 
+@import './base-style/color.scss';
+@import './base-style/font.scss';
+@import './base-style//mixins.scss';
+@import './base-style/configuration.scss';
+
+//Primeng library 
+@import '~primeng/resources/themes/saga-purple/theme.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeicons/primeicons.css';
+@import '~primeflex/primeflex.css';
+
+//shared eshop 
+@import './apps/eshop-admin/shared/display.scss';
+@import './apps/eshop-admin/shared/sidebar.scss';
+
+
+//eshop admin component scss
+@import './apps/eshop-admin/pages/dashboard.scss';

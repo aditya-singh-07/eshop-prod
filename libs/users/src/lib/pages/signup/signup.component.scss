@@ -1,0 +1,43 @@
+* {
+    overflow: hidden; /* Hide scrollbars */
+  }
+
+.eshop{
+    background-image: url(../asserts/background.png);
+    height: 100vh;
+    background-color:#263238;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &-main{
+        input[type=text]{
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+             border-radius: 5px;
+             padding: 10px;
+  
+         
+            }
+        height: 80%;
+        margin-top: 4%;
+
+        margin-bottom: 10%;
+        margin-left: calc(100% - 75%);
+        width: 50%;
+        background: #E1F5FE;
+        box-sizing: border-box;
+        border-radius: 20px;
+    }
+
+   
+}
+p-card {
+    text-align: center;
+    
+}
+
+.p-ripple.purple .p-ink {
+    background: rgba(256,39,176,.1);
+}
+
+  

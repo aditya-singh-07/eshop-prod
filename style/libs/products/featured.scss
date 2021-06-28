@@ -1,0 +1,44 @@
+
+.title{
+    font-family:'Montserrat', sans-serif;
+    
+}
+.title h1{
+    border-bottom: 2px solid red;
+    width: 120px;
+   
+}
+.eshop{
+    &-card{
+        border-radius: 20px;
+        // background-color: rgba(0, 0, 255, 0.253);
+        background:radial-gradient(#fff,#ffd6d677);
+        height: 200px;
+        width: 300px;
+        margin-top: 20px;
+        padding-bottom: 2%;
+     
+        &-header{
+        font-size: 20px;
+        letter-spacing: 1.5px;
+        }
+    
+    }
+}
+.featuredcard{
+    min-height: 250px;
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+.featuredimg{
+   
+   width: 150px;
+    height: 90px;
+ margin-top: -30px;
+}
+.ptag{
+    font-size: 12px;
+}

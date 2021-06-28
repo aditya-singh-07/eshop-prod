@@ -1,0 +1,170 @@
+<p-breadcrumb [model]="items" [home]="editproduct"></p-breadcrumb>
+<p-toast></p-toast>
+<div class="p-grid">
+    <div class="p-col-12 p-md-* p-lg-*">
+        <p-card header="{{ mode ? 'Edit product' : 'Add Product' }}" subheader="{{ subheader }}">
+            <form [formGroup]="form">
+              
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-6">
+                        <label for="name">Name</label>
+                        <input
+                            [ngStyle]="{ 'border-radius': '8px' }"
+                            type="text"
+                            id="name" 
+                            formControlName="name" 
+                            pInputText
+                        />
+              
+                        <small *ngIf="productform.name.invalid && isFormSubmited" class="p-error"
+                            >name is required</small
+                        >
+                    </div>
+                    <div class="p-field p-col-12 p-md-6">
+                        <label for="brand">Brand</label>
+                        <input
+                            [ngStyle]="{ 'border-radius': '8px' }"
+                            type="text"
+                            id="brand"
+                            formControlName="brand" 
+                            pInputText
+                        />
+
+                        <small *ngIf="productform.brand.invalid && isFormSubmited" class="p-error"
+                            >brand is required</small
+                        >
+                    </div>
+                </div>
+                <!-- <div class="p-field p-col-12 p-md-4">
+                    <span class="p-float-label">
+                        <input type="text" id="description" pInputText > 
+                        <label for="description">Description</label>
+                    </span>
+                </div> -->
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-6">
+                        <label for="stock">Stock</label>
+                        <p-inputNumber
+                            [ngStyle]="{ 'border-radius': '8px' }"
+                            inputId="stock"
+                            formControlName="productStock" 
+                        ></p-inputNumber>
+           
+                        <small
+                            *ngIf="productform.productStock.invalid && isFormSubmited"
+                            class="p-error"
+                            >stock is required</small
+                        >
+                    </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="category">category</label>
+                    <!-- <p-dropdown
+                        [ngStyle]="{ 'border-radius': '8px' }"
+                        inputId="dropdown"
+                        [options]="categories"
+                        [autoDisplayFirst]="false"
+                        formControlName="category" 
+                        optionLabel="category"
+                    ></p-dropdown> -->
+                    <p-dropdown  formControlName="category"  [showClear]="true" placeholder="Select a category"  [ngStyle]="{ 'border-radius': '8px' }" [options]="categories" optionLabel="name" optionValue="id"></p-dropdown>
+  
+                    <small
+                        *ngIf="productform.category.invalid && isFormSubmited"
+                        class="p-error"
+                        >category is required</small
+                    >
+                </div>
+                </div>
+
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-col-12 p-md-6 p-sm-*">
+                        <label for="category">Price</label><br><br>
+                            <input
+                                [ngStyle]="{ 'border-radius': '5px' }"
+                                type="text"
+                                pInputText
+                                formControlName="price" 
+                                placeholder="Price"
+                            />
+                            <small *ngIf="productform.price.invalid && isFormSubmited" class="p-error"
+                                >price is required</small>
+                      
+                    </div>
+                    <div class="p-field p-col-12 p-md-6">
+                        <label for="category">Featured</label><br>
+                        
+                        <p-inputSwitch formControlName="isFeatured" ></p-inputSwitch>
+                        <!-- <small
+                            *ngIf="productform.category.invalid && isFormSubmited"
+                            class="p-error"
+                            ></small> -->
+                        
+                    </div>
+              
+                </div><br>
+
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-6">
+                        <label for="description">Description</label>
+                        <br>
+                        <textarea
+                            [ngStyle]="{ 'border-radius': '8px' }"
+                            inputId="description"
+                            rows="3"
+                            cols="60"
+                            formControlName="description" 
+                            pInputTextarea
+                        ></textarea>
+      
+                        <small
+                            *ngIf="productform.description.invalid && isFormSubmited"
+                            class="p-error"
+                            >description is required</small
+                        >
+                    </div>
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="image" >Image</label>
+                        <input [ngStyle]="{ 'color':'black', 'background-color': 'rgba(141, 116, 230, 0.342)', 'border-radius': '8px' }" type="file" multiple  accept="image/*" pInputText (change)="onUpload($event)">
+                        <div class="pInputText p-mt-2">
+                            <img [hidden]="!imageData" [src]="imageData" width="100%" height="80">
+                        </div>
+                        <small
+                            *ngIf="productform.image.invalid && isFormSubmited"
+                            class="p-error"
+                            >Image is required</small
+                        >
+                    </div>
+                </div>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-12">
+                <label for="description">Description Details</label>
+                <p-editor formControlName="descriptionDetails"  [style]="{'height':'320px'}"></p-editor>
+                </div>
+                </div>
+
+                <div class="p-field p-col-12 p-md-2 p-sm-*">
+
+                    <button *ngIf="mode"
+                    pButton
+                    type="button"
+                    label="Update Product"
+                    icon="pi pi-plus"
+                    
+                    (click)="onupdate()"
+                    class="p-button-outlined p-button-rounded"
+                ></button>
+                    <button
+                        pButton  *ngIf="!mode"
+                        type="button"
+                        label="Add Product"
+                        icon="pi pi-plus"
+                        
+                        (click)="onSubmit()"
+                        class="p-button-outlined p-button-rounded"
+                    ></button>
+                </div>
+    
+        </form>
+        </p-card>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<p-breadcrumb [model]="items" [home]="user"></p-breadcrumb>
+<p-toast ></p-toast>
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+    <ng-template pTemplate="header" icon="pi pi-exclamation-triangle">
+        <h3>Confirmation</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>
+<div class="eshop-main">
+    <p-card header="Users" subheader="You can Add user " [style]="{ 'margin-right': 'auto','margin-top': '3%' }">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-* p-lg-*">
+                <button
+                    pButton
+                    type="button"
+                    label="Add user"
+                    icon="pi pi-plus"
+                    class="p-button-outlined p-button-rounded"
+                    [style]="{'float':'right'}"
+                    [routerLink]="['/usersCreate']"
+                ></button>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <!-- <div pRipple class="purple"> -->
+                <div class="p-col-12 p-md-* p-sm-* p-md-*">
+                    <p-table [scrollable]="true" scrollHeight="200px"
+                        [value]="userlist"  [globalFilterFields]="['name']"
+                        *ngIf="userlist && userlist.length > 0"
+                        styleClass="p-datatable-responsive-demo">
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex p-ai-center p-jc-between">
+                                Users list
+                                <p-button icon="pi pi-refresh float-right"></p-button>
+                            </div>
+                        </ng-template>
+              
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="name" style="text-align: center;"> Name <p-sortIcon field="name"></p-sortIcon></th>
+                                <th pSortableColumn="email" style="text-align: center;">Email <p-sortIcon field="email"></p-sortIcon></th>
+                                <th pSortableColumn="phone" style="text-align: center;">Phone number<p-sortIcon field="phone"></p-sortIcon></th>
+                                <th pSortableColumn="admin" style="text-align: center;">isAdmin<p-sortIcon field="admin"></p-sortIcon></th>
+                                <th>Action</th>
+                            </tr>
+                        </ng-template>
+                
+                        <ng-template pTemplate="body" let-user>
+                            <tr>
+                                <td  style="text-align: center;">{{ user.name }}</td>
+                                <td style="text-align: center;">{{ user.email }}</td>
+                                <td  style="text-align: center;">{{ user.phone }}</td>
+                                <td  style="text-align: center;">
+                                    <p-tag  *ngIf="user.isAdmin"  severity="success" [rounded]="true"><i class="pi pi-check-circle"></i></p-tag>
+                                    <p-tag  *ngIf="!user.isAdmin"  severity="danger" [rounded]="true"><i class="pi pi-times-circle"></i></p-tag>
+                                </td>
+                                <td>
+                                    <button pButton pRipple type="button" [routerLink]="['/users', user.id]" icon="pi pi-pencil" class="p-button-rounded p-button-outlined p-mr-2"></button>
+                                    <button pButton pRipple type="button" (click)="deleteUser(user.id)" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                    <p *ngIf="userlist.length <=0">No Users Found</p>
+                </div>
+            <!-- </div> -->
+        </div>
+    </p-card>
+
+
+
+</div>
+

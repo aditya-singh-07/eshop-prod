@@ -1,0 +1,66 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="title">
+            <h1>Products</h1>
+            <div class="p-col-12">
+                <p-tag pRipple styleClass="{'float:right'}" class="product" type="button" severity="info" styleClass="p-mr-2" value="More"></p-tag>
+             </div>
+        </div> 
+    </div>
+</div>
+    
+<!-- <div class="p-grid">
+    
+   <div class="p-col-3"  *ngFor="let product of products | slice:0:4;">
+        <div class="card" >
+            <div pRipple class="eshop-card p-shadow-4" >
+                <div class="eshop-card-header p-text-bold">
+                    <label>Products</label><br />
+                    <label
+                        class="p-pt-2 p-text-lowercase"
+                        style="
+                            font-size: 15px;
+                            color: #9c27b0;
+                            letter-spacing: 1px;
+                            text-decoration: none;
+                        "
+                        >{{ product.name }}</label
+                    >
+                    <div class="eshop-card-body"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</div> -->
+
+<div class="p-grid">
+    <div class="p-col-12 p-md-6 p-sm-3 p-xs-1 p-lg-3"  *ngFor="let product of products | slice:0:4;">
+         <div class="featuredcard" >
+             <div class="eshop-card" >
+                 <div class="eshop-card-header p-text-bold">
+                     <img class="featuredimg" src="{{ product.image }}" />
+                     <h1
+                         style="
+                             font-size: 18px;
+                             color: orange;
+                             letter-spacing: 1px;
+                             text-decoration: none;
+                         "
+                         >{{ product.name }}</h1
+                     >   <h6>Price: ₹ {{ product.price  }}</h6><br>
+                     <button pButton pRipple type="button" label="Add cart" class="p-button-rounded"><i class="pi pi-shopping-cart p-pr-2"></i></button>
+                     
+                 </div>
+       
+                 
+             </div>
+         </div>
+
+     </div>
+
+
+
+     
+ </div>

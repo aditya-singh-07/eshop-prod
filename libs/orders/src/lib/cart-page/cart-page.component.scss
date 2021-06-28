@@ -1,0 +1,61 @@
+img{
+    height: 180px;
+    max-width: 100%;
+}
+.container{
+    display: flex;
+}
+
+.cart{
+    border-radius: 20px;
+    flex-direction: column;
+    &-price{
+        float: right;
+       
+    }
+    &-instock{
+        font-size: 12px;
+    }
+    &-quantity{
+        display: flex;
+    }
+    &-remove{
+       display: flex;
+    }
+    &-subtotal{
+        float: right;
+    }
+    &-empty{
+        max-height: 300px;
+    }
+
+}
+.p-tag{
+
+    font-size: 12px;
+  
+}
+
+.card{
+    justify-content: center;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 20px;
+    background: rgba(255, 235, 205, 0.432);
+}
+.subtotal button{
+    display: block;
+    width: 100%;
+    justify-content: center;
+}
+.accordion{
+ 
+}
+
+.empty {
+    background-color: blanchedalmond;
+    height: 200px;
+    padding-top: calc(200px - 120px);
+    justify-content: center;
+    display: flex;
+}

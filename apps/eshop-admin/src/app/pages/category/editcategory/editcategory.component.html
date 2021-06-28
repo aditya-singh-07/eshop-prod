@@ -1,0 +1,93 @@
+<p-breadcrumb [model]="items" [home]="editcategory"></p-breadcrumb>
+<p-toast ></p-toast>
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+    <ng-template pTemplate="header" icon="pi pi-exclamation-triangle">
+        <h3>Confirmation</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>
+<div class="eshop-main">
+    <p-card header="Edit Category" icon="pi pi-pencil" [style]="{ 'margin-right': 'auto','margin-top': '3%','width':'80vw' }">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-* p-lg-*">
+
+                <form [formGroup]="form">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col-12 p-md-6">
+                            <label for="name">category name</label>
+                            <input formControlName="name"  id="name" type="text" pInputText> 
+                            <!-- <small *ngIf="categoryform.name.invalid && isFormSubmited" class="p-error">Name is required</small> -->
+                        </div>
+                
+                    </div>
+                    <div class="p-fluid p-formgrid p-grid"  [style]="{height: '15vh'}">
+                        <div class="p-field p-col-12 p-md-6">
+                            <label for="icon">category icon</label>
+                            <input formControlName="icon"  id="icon" type="text" pInputText> 
+                            <!-- <small *ngIf="categoryform.icon.invalid && isFormSubmited" class="p-error">Icon is required</small> -->
+                            <!-- <p-dropdown formControlName="icon" inputId="icon"  placeholder="Select" optionLabel="name"></p-dropdown> -->
+                        </div>
+                        <div class="p-field p-col-12 p-md-3" >
+                            <label for="color">category color </label>
+                            <p-colorPicker formControlName="color"  id="color" class="p-ml-2"></p-colorPicker>
+                        </div>
+                  
+                    </div>
+                    <button  class="p-button-raised p-button-rounded"pButton type="button" (click)="onupdate()" label="Update" icon="pi pi-check"></button>
+                
+                </form>
+            </div>
+        </div>
+
+    </p-card>
+</div>
+
+
+<div class="eshop-main">
+    <p-card header="Icons" subheader="You can Search icon" [style]="{ 'margin-right': 'auto','margin-top': '2%' }">
+        <div class="p-grid">
+            <!-- <div pRipple class="purple"> -->
+                <div class="p-col-12 p-md-* p-sm-* p-md-*">
+                    <p-table [scrollable]="true" scrollHeight="200px"
+                        [value]="iconlist"
+                        styleClass="p-datatable-responsive-demo">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th  style="text-align: center;">icon name</th>
+                                <th  style="text-align: center;">icon look</th>
+                                <th  style="text-align: center;">icon tag</th>
+                            
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-icon>
+                            <tr>
+                                <td   style="text-align: center;">{{ icon.name}}</td>
+                                <td style="text-align: center;"><i class="pi" [ngClass]="icon.url"></i></td>
+                                <td  style="text-align: center;">{{ icon.url }}</td>
+                    
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                
+                </div>
+            <!-- </div> -->
+        </div>
+    </p-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

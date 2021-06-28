@@ -1,0 +1,45 @@
+
+.eshop{
+
+    &-card{
+        border-radius: 25px;
+        background-color: rgba(0, 0, 255, 0.253);
+        height: auto;
+        margin-top: 20px;
+        padding-bottom: 4%;
+     
+        &-header{
+        padding-left: 8%;
+        padding-top: calc(100px - 80px);
+        font-size: 20px;
+        letter-spacing: 1.5px;
+        }
+        &-body{
+            float: right;
+        }
+
+    }
+
+
+    &-history{
+        border-radius: 25px;
+        background-color: rgba(0, 0, 255, 0.253);
+        height: auto;
+        padding-bottom: 5%;
+        margin-top:2%;
+ 
+    }
+    &-payment{
+        border-radius: 25px;
+        background-color: rgba(0, 0, 255, 0.253);
+        height: 300px;
+        padding-bottom: 5%;
+        margin-top:4%;
+    }
+    &-table{
+        border-color: brown;
+        border-radius: 20px;
+     
+
+    }
+}

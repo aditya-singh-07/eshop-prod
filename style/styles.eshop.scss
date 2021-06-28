@@ -1,0 +1,36 @@
+//base 
+@import './base-style/color.scss';
+@import './base-style/font.scss';
+@import './base-style//mixins.scss';
+@import './base-style/configuration.scss';
+
+//Animate library 
+@import '~animate.css/animate.min.css';
+
+//Primeng library 
+@import '~primeng/resources/themes/saga-purple/theme.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeicons/primeicons.css';
+@import '~primeflex/primeflex.css';
+
+//shared eshop 
+@import './apps/eshop/shared/header.scss';
+@import './apps/eshop/shared/footer.scss';
+@import './apps/eshop/shared/navigation.scss';
+
+//eshop component scss
+@import './apps/eshop/pages/home.scss';
+@import './apps/eshop/pages/products.scss';
+@import './apps/eshop/pages/product-details.scss';
+
+// library Ui scss
+@import './libs/ui/ui.global.scss';
+
+// library product scss
+@import './libs/products/product.global.scss';
+
+
+// library orders scss
+
+
+// library users scss

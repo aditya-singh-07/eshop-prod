@@ -1,0 +1,92 @@
+<div class="p-grid">
+  <div class="p-col-8">
+    <h2  *ngIf="cartitem.length > 0">Shopping</h2>
+  
+    <div class="cart-card p-mt-2" *ngFor="let cartitems of cartitem">
+   
+      <h5 class="p-mr-2" style="float: right">price</h5>
+      <p-divider></p-divider>
+
+      <div class="p-grid">
+        <div class="p-col-3" pRipple>
+          <img
+            src="{{ cartitems.product.image }}"
+          />
+        </div>
+        <div class="p-col-6">
+          <div class="cart-name">{{ cartitems.product?.name }}</div>
+          <div class="cart-instock p-mt-2 p-text-bold" style="color: green;">In stock</div>
+          <h5>Eligible for FREE Shipping</h5>
+          <p-tag severity="success"><h6>Fulfilled</h6></p-tag>
+          <h5>Brand: {{ cartitems.product.brand }}</h5>
+          <h5 for="quantity">Quantity</h5>
+          <div class="cart-quantity p-field p-col-2 p-md-2">
+            <p-inputNumber
+              [size]="1"
+              currency="INR"
+              mode="decimal"
+              [showButtons]="true"
+              [inputId]="cartitems.product.id"
+              [(ngModel)]="cartitems.quantity"
+              [min]="1"
+              [max]="100"
+              (onInput)="onUpdatequantity($event,cartitems)"
+            >
+            </p-inputNumber>
+            <div class="cart-remove p-ml-4 p-mt-2">
+              <i class="pi pi-trash" (click)="deletecart(cartitems)" style="font-size: 1rem"> </i>
+            </div>
+          </div>
+        </div>
+        <div class="p-col-3">
+          <div class="cart-price p-mr-2">
+            <h4>{{ cartitems.product?.price* cartitems.quantity | currency: 'INR'}}</h4>
+          </div>
+        </div>
+      </div>
+      <p-divider></p-divider>
+      <div class="p-col-12 p-mb-5">
+        <div class="p-col cart-subtotal">
+          <h4>Subtotal (1 item ):<span class="p-ml-2">{{cartitems.product?.price * cartitems.quantity | currency: 'INR'}}</span></h4>
+        </div>
+      </div>
+    </div>
+    <div  class="cart-empty p-mt-2" *ngIf="cartitem.length == 0">
+      <div class="empty">
+        <i class="pi pi-shopping-cart " style="font-size: 2rem"></i>
+        <h3 class="text-align:center p-ml-3">Your Eshop Basket is empty</h3>
+      </div>
+
+    </div>
+  </div>
+  <div class="p-col-4" >
+    <div class="card">
+      <h5>
+        <i class="pi pi-check-circle"></i> Your order is eligible for FREE
+        Delivery.<br />Select this option at checkout. Details
+      </h5>
+
+      <div class="subtotal p-mt-3"  *ngIf="cartitem.length > 0">
+        <h4>
+          total Price (1 item ):<span class="p-ml-2" style="color: green"
+            >{{ totalPrice | currency: 'INR' }}</span
+          >
+        </h4>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Proceed to buy"
+          [routerLink]="['/checkout']"
+          class="p-button-rounded p-mt-3 p-button-warning"
+        ></button>
+      </div>
+      <div class="accordion p-mt-3">
+        <p-accordion>
+            <p-accordionTab [selected]="false" header="EMI Available"> Your order qualifies for EMI with valid credit cards (not available on purchase of Gold, Jewelry, Gift cards and Eshop pay balance top up) </p-accordionTab>
+          </p-accordion>
+      </div>
+
+    </div>
+  </div>
+</div>

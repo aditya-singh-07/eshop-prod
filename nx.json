@@ -1,0 +1,52 @@
+{
+    "implicitDependencies": {
+        "package.json": {
+            "dependencies": "*",
+            "devDependencies": "*"
+        },
+        ".eslintrc.json": "*"
+    },
+    "affected": {
+        "defaultBase": "master"
+    },
+    "npmScope": "aditya",
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/workspace/tasks-runners/default",
+            "options": {
+                "cacheableOperations": ["build", "lint", "test", "e2e"]
+            }
+        }
+    },
+    "projects": {
+        "eshop": {
+            "tags": []
+        },
+        "eshop-e2e": {
+            "tags": [],
+            "implicitDependencies": ["eshop"]
+        },
+        "eshop-admin": {
+            "tags": []
+        },
+        "eshop-admin-e2e": {
+            "tags": [],
+            "implicitDependencies": ["eshop-admin"]
+        },
+        "orders": {
+            "tags": []
+        },
+        "users": {
+            "tags": []
+        },
+        "products": {
+            "tags": []
+        },
+        "ui": {
+            "tags": []
+        },
+        "material": {
+            "tags": []
+        }
+    }
+}

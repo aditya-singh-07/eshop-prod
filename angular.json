@@ -1,0 +1,439 @@
+{
+    "version": 1,
+    "cli": {
+        "defaultCollection": "@nrwl/angular"
+    },
+    "defaultProject": "eshop",
+    "schematics": {
+        "@nrwl/angular": {
+            "application": {
+                "linter": "eslint"
+            },
+            "library": {
+                "linter": "eslint"
+            },
+            "storybook-configuration": {
+                "linter": "eslint"
+            }
+        },
+        "@nrwl/angular:application": {
+            "style": "scss",
+            "linter": "eslint",
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "cypress"
+        },
+        "@nrwl/angular:library": {
+            "style": "scss",
+            "linter": "eslint",
+            "unitTestRunner": "jest"
+        },
+        "@nrwl/angular:component": {
+            "style": "scss"
+        }
+    },
+    "projects": {
+        "eshop": {
+            "projectType": "application",
+            "root": "apps/eshop",
+            "sourceRoot": "apps/eshop/src",
+            "prefix": "aditya",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/eshop",
+                        "index": "apps/eshop/src/index.html",
+                        "main": "apps/eshop/src/main.ts",
+                        "polyfills": "apps/eshop/src/polyfills.ts",
+                        "tsConfig": "apps/eshop/tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": ["apps/eshop/src/favicon.ico", "apps/eshop/src/assets"],
+                        "styles": ["apps/eshop/src/styles.scss"],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "2mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/eshop/src/environments/environment.ts",
+                                    "with": "apps/eshop/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "eshop:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "eshop:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "eshop:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/eshop/src/**/*.ts", "apps/eshop/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/eshop"],
+                    "options": {
+                        "jestConfig": "apps/eshop/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "eshop-e2e": {
+            "root": "apps/eshop-e2e",
+            "sourceRoot": "apps/eshop-e2e/src",
+            "projectType": "application",
+            "architect": {
+                "e2e": {
+                    "builder": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/eshop-e2e/cypress.json",
+                        "tsConfig": "apps/eshop-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "eshop:serve:development"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "eshop:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/eshop-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "eshop-admin": {
+            "projectType": "application",
+            "root": "apps/eshop-admin",
+            "sourceRoot": "apps/eshop-admin/src",
+            "prefix": "aditya",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/eshop-admin",
+                        "index": "apps/eshop-admin/src/index.html",
+                        "main": "apps/eshop-admin/src/main.ts",
+                        "polyfills": "apps/eshop-admin/src/polyfills.ts",
+                        "tsConfig": "apps/eshop-admin/tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            "apps/eshop-admin/src/favicon.ico",
+                            "apps/eshop-admin/src/assets"
+                        ],
+                        "styles": [
+                            "apps/eshop-admin/src/styles.scss",
+                            "node_modules/quill/dist/quill.core.css",
+                            "node_modules/quill/dist/quill.snow.css"
+                        ],
+                        "scripts": [
+                            "node_modules/quill/dist/quill.js",
+                            "node_modules/chart.js/dist/Chart.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "replace": "/environments/environment.ts",
+                                    "with": "/environments/environment.prod.ts"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "eshop-admin:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "eshop-admin:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "eshop-admin:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/eshop-admin/src/**/*.ts",
+                            "apps/eshop-admin/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/eshop-admin"],
+                    "options": {
+                        "jestConfig": "apps/eshop-admin/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "eshop-admin-e2e": {
+            "root": "apps/eshop-admin-e2e",
+            "sourceRoot": "apps/eshop-admin-e2e/src",
+            "projectType": "application",
+            "architect": {
+                "e2e": {
+                    "builder": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/eshop-admin-e2e/cypress.json",
+                        "tsConfig": "apps/eshop-admin-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "eshop-admin:serve:development"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "eshop-admin:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/eshop-admin-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "orders": {
+            "projectType": "library",
+            "root": "libs/orders",
+            "sourceRoot": "libs/orders/src",
+            "prefix": "orders",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:ng-packagr-lite",
+                    "outputs": ["dist/libs/orders"],
+                    "options": {
+                        "project": "libs/orders/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/orders/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/orders/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/orders"],
+                    "options": {
+                        "jestConfig": "libs/orders/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/orders/src/**/*.ts", "libs/orders/src/**/*.html"]
+                    }
+                }
+            }
+        },
+        "users": {
+            "projectType": "library",
+            "root": "libs/users",
+            "sourceRoot": "libs/users/src",
+            "prefix": "aditya",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:ng-packagr-lite",
+                    "outputs": ["dist/libs/users"],
+                    "options": {
+                        "project": "libs/users/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/users/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/users/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/users"],
+                    "options": {
+                        "jestConfig": "libs/users/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/users/src/**/*.ts", "libs/users/src/**/*.html"]
+                    }
+                }
+            }
+        },
+        "products": {
+            "projectType": "library",
+            "root": "libs/products",
+            "sourceRoot": "libs/products/src",
+            "prefix": "products",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:ng-packagr-lite",
+                    "outputs": ["dist/libs/products"],
+                    "options": {
+                        "project": "libs/products/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/products/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "libs/products/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/products"],
+                    "options": {
+                        "jestConfig": "libs/products/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/products/src/**/*.ts",
+                            "libs/products/src/**/*.html"
+                        ]
+                    }
+                }
+            }
+        },
+        "ui": {
+            "projectType": "library",
+            "root": "libs/ui",
+            "sourceRoot": "libs/ui/src",
+            "prefix": "ui",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui"],
+                    "options": {
+                        "jestConfig": "libs/ui/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
+                    }
+                }
+            }
+        },
+        "material": {
+            "projectType": "library",
+            "root": "libs/material",
+            "sourceRoot": "libs/material/src",
+            "prefix": "aditya",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/material"],
+                    "options": {
+                        "jestConfig": "libs/material/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/material/src/**/*.ts",
+                            "libs/material/src/**/*.html"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

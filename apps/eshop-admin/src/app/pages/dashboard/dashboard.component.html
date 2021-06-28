@@ -1,0 +1,98 @@
+<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+<div class="eshop-dashboard">
+  <div class="p-grid">
+    <div class="p-col-4">
+      <div pRipple class="eshop-card p-shadow-4">
+        <div class="eshop-card-header p-text-bold">
+          <label>Customers</label><br>
+          <label class="p-pt-2 p-text-lowercase" style="font-size: 15px; color: #9c27b0; letter-spacing: 1px; text-decoration: none;">Total Customer</label>
+          <div class="eshop-card-body">
+            <p-tag styleClass="p-mr-2 p-ml-4 p-pl-3 p-pr-2" severity="success" value="{{ countuser }}" [rounded]="true"><i class="pi pi-users p-mr-4" style="font-size: 2rem"></i></p-tag>
+          </div>
+        </div>
+     
+      </div>
+      
+    </div> 
+    <div class="p-col-4">
+      <div pRipple class="eshop-card p-shadow-4">
+        <div class="eshop-card-header p-text-bold">
+          <label>Products</label><br>
+          <label class="p-pt-2 p-text-lowercase" style="font-size: 15px; color: #9c27b0; letter-spacing: 1px; text-decoration: none;">Total Products</label>
+          <div class="eshop-card-body">
+            <p-tag styleClass="p-mr-2 p-ml-4 p-pl-3 p-pr-2" severity="success" value="{{ countproduct }}" [rounded]="true"><i class="pi pi-briefcase p-mr-4" style="font-size: 2rem"></i></p-tag>
+          </div>
+        </div>
+     
+      </div>
+      
+    </div> 
+    <div class="p-col-4">
+      <div pRipple class="eshop-card p-shadow-4">
+        <div class="eshop-card-header p-text-bold">
+          <label>Orders</label><br>
+          <label class="p-pt-2 p-text-lowercase" style="font-size: 15px; color: #9c27b0; letter-spacing: 1px; text-decoration: none;">Total orders</label>
+          <div class="eshop-card-body">
+            <p-tag styleClass="p-mr-2 p-ml-4 p-pl-3 p-pr-2" severity="success" value="{{ countorder }}" [rounded]="true"><i class="pi pi-shopping-cart p-mr-4" style="font-size: 2rem"></i></p-tag>
+          </div>
+        </div>
+     
+      </div>
+      
+    </div> 
+    <div class="p-col-9 p-md-* p-sm-*">
+      <div  class="eshop-history">
+        <div class="eshop-card-header p-text-bold">
+          <label pRipple>Pending Orders</label><br><br>
+
+          <div class="p-grid">
+            <div class="p-col-11 p-md-* p-sm-*">
+              <div  class="p-shadow-5">
+                <p-table [responsive]="true" class="eshop-table" [value]="orderpending">
+                  <ng-template pTemplate="header" >
+                      <tr>
+                          <th style="text-align:center">Name</th>
+                          <th style="text-align:center">Order Date</th>
+                          <th>Status</th>
+                          <th>Action</th>
+          
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td style="text-align:center">{{ product.user?.name }}</td>
+                        <td style="text-align:center">{{ product.dateOrder   | date: 'mediumDate' }}</td>
+                       <td> <p-tag styleClass="p-mr-2" severity="warning" value="{{ product.status }}" [rounded]="true"></p-tag></td>
+                        <td><button pButton pRipple label="view" [routerLink]="['/ordersDetail', product.id]" type="button" icon="pi pi-chevron-circle-right" class="p-button-rounded p-button-info"></button> </td>
+                    </tr>
+                </ng-template>
+              </p-table>
+              </div>
+ 
+        </div>
+        </div>
+
+        </div>
+     
+      </div>
+      
+    </div> 
+    <div class="p-col-3">
+      <div pRipple class="eshop-payment">
+        <div class="eshop-card-header p-text-bold p=p-shadow-4">
+          <label>Payment Info</label><br><br>
+
+        </div>
+     
+      </div>
+      
+    </div> 
+
+
+
+  </div>
+  
+
+</div>
+
+  

@@ -1,0 +1,21 @@
+<div class="eshop-wrapper">
+
+        <!-- <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
+            <eshop-admin-sidebar></eshop-admin-sidebar>
+        </p-sidebar> -->
+        <p-sidebar [(visible)]="visibleSidebar1"  [baseZIndex]="10000">    
+            <div class="row" style="padding-bottom: 20px;">    
+              <div class="col-sm-12 btn btn-primary">    
+                <eshop-admin-sidebar></eshop-admin-sidebar>
+              </div>    
+            </div>    
+    
+          </p-sidebar>    
+
+
+    <p-button type="button" class="p-mr-2" (click)="visibleSidebar1 = true" icon="pi pi-arrow-right"></p-button>
+
+    <div class="eshop-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

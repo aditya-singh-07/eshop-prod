@@ -1,0 +1,102 @@
+<p-breadcrumb [model]="items" [home]="category"></p-breadcrumb>
+<p-toast ></p-toast>
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+    <ng-template pTemplate="header" icon="pi pi-exclamation-triangle">
+        <h3>Confirmation</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>
+<div class="eshop-main">
+    <p-card header="Category" subheader="You can Add category " [style]="{ 'margin-right': 'auto','margin-top': '3%' }">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-* p-lg-*">
+                <button
+                    pButton
+                    type="button"
+                    label="Add category"
+                    icon="pi pi-plus"
+                    class="p-button-outlined p-button-rounded"
+                    [style]="{'float':'right'}"
+                    (click)="showDialog()"
+                ></button>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <!-- <div pRipple class="purple"> -->
+                <div class="p-col-12 p-md-* p-sm-* p-md-*">
+                    <p-table [scrollable]="true" scrollHeight="200px"
+                        [value]="categories"
+                        *ngIf="categories && categories.length > 0"
+                        styleClass="p-datatable-responsive-demo">
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex p-ai-center p-jc-between">
+                                Category list
+                                <p-button icon="pi pi-refresh float-right"></p-button>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="id" style="text-align: center;">id<p-sortIcon field="id"></p-sortIcon></th>
+                                <th pSortableColumn="Name" style="text-align: center;">Category Name <p-sortIcon field="Name"></p-sortIcon></th>
+                                <th pSortableColumn="icons" style="text-align: center;">Category icons <p-sortIcon field="icons"></p-sortIcon></th>
+                                <th pSortableColumn="Color" style="text-align: center;">Color<p-sortIcon field="Color"></p-sortIcon></th>
+                                <th>Action</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-category>
+                            <tr>
+                                <td>{{ category.id }}</td>
+                                <td  style="text-align: center;">{{ category.name }}</td>
+                                <td style="text-align: center;"><i class="pi" [ngClass]="'pi-' + category.icon"></i></td>
+                                <td   [ngStyle]="{'color': category.color}" style="text-align: center;">{{ category.color }}</td>
+                                <td>
+                                    <button pButton pRipple type="button" [routerLink]="['/categories', category.id]" icon="pi pi-pencil" class="p-button-rounded p-button-outlined p-mr-2"></button>
+                                    <button pButton pRipple type="button" (click)="deleteCategory(category.id)" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                    <p *ngIf="categories.length <= 0">No category Found</p>
+                </div>
+            <!-- </div> -->
+        </div>
+    </p-card>
+
+
+    
+</div>
+
+<p-dialog header="Add category" [(visible)]="display" [modal]="true"  [style]="{width: '50vw', height: 'auto'}"> 
+    <form [formGroup]="form">
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-12 p-md-6">
+                <label for="name">category name</label>
+                <input formControlName="name"  id="name" type="text" pInputText> 
+                <small *ngIf="categoryform.name.invalid && isFormSubmited" class="p-error">Name is required</small>
+            </div>
+    
+        </div>
+        <div class="p-fluid p-formgrid p-grid"  [style]="{height: '20vh'}">
+            <div class="p-field p-col-12 p-md-6">
+                <label for="icon">category icon</label>
+                <input formControlName="icon"  id="icon" type="text" pInputText> 
+                <small *ngIf="categoryform.icon.invalid && isFormSubmited" class="p-error">Icon is required</small>
+                <!-- <p-dropdown formControlName="icon" inputId="icon" id="icon" [options]="icon" placeholder="Select" optionLabel="name"></p-dropdown> -->
+            </div>
+            <div class="p-field p-col-12 p-md-3" >
+                <label for="color">category color </label>
+                <p-colorPicker formControlName="color"  id="color" class="p-ml-2"></p-colorPicker>
+                <small *ngIf="categoryform.color.invalid && isFormSubmited" class="p-error">color is required</small>
+            </div>
+      
+        </div>
+        <button  class="p-button-raised p-button-rounded"pButton type="button" (click)="onSubmit()" label="Save" icon="pi pi-check"></button>
+
+    </form>
+
+
+</p-dialog>

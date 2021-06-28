@@ -1,0 +1,69 @@
+<div class="p-grid">
+  <div class="p-col-3">
+    <div class="product-card">
+      <h4>Category</h4>
+      <ul *ngFor="let categories of category">
+        <h5 class="p-ml-2 p-pt-2">{{ categories.name }}</h5>
+      </ul>
+      <br />
+      <h4>Brand</h4>
+      <ul *ngFor="let brand of brands">
+        <h5 class="p-ml-2 p-pt-2">{{ brand.name }}</h5>
+      </ul>
+      <br />
+      <h4>Filter</h4>
+      <br />
+      <div class="p-field-checkbox" *ngFor="let categories of category">
+        <p-checkbox
+          name="uniqueName"
+          [(ngModel)]="categories.checked"
+          [binary]="true"
+          inputId="{{ categories.id }}"
+          (onChange)="filterproduct()"
+        ></p-checkbox>
+        <label for="{{ categories.id }}">{{ categories.name }}</label>
+      </div>
+      <br />
+      <h4>Customer Review</h4>
+      <p-rating [(ngModel)]="rating" [cancel]="false"></p-rating>
+    </div>
+  </div>
+  <div class="p-col-9">
+    <div class="p-grid">
+      <div class="p-col-4" *ngFor="let product of product">
+        <div class="featuredcard">
+          <div class="eshop-card">
+            <div
+              class="eshop-card-header p-text-bold"
+              [routerLink]="['/productDetails', product.id]"
+            >
+              <img class="featuredimg"   src="{{ product.image }}" />
+              <h1
+                style="
+                  font-size: 18px;
+                  color: orange;
+                  letter-spacing: 1px;
+                  text-decoration: none;
+                "
+              >
+                {{ product.name }}
+              </h1>
+              <h6>Price: ₹ {{ product.price }}</h6>
+              <br />
+            </div>
+            <button
+            pButton
+            pRipple
+            type="button"
+            label="Add cart"
+            class="p-button-rounded"
+            (click)="addtocart(product.id)"
+          >
+            <i class="pi pi-shopping-cart p-pr-2"></i>
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
